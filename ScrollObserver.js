@@ -5,15 +5,17 @@
 // - ScrollObserver ma odmontować event onscroll po wywołaniu mentody unobserve
 class ScrollObserver {
   constructor() {
-    this.observerFn = null;
+    this.observerFunctions = [];
   }
 
   observe = (callback) => {
-    this.observerFn = callback;
+    this.observerFunctions.push(callback);
     window.addEventListener("scroll", callback);
   };
   unobserve = () => {
-    window.removeEventListener("scroll", this.observerFn);
+    this.observerFunctions.forEach((observerFn) => {
+      window.removeEventListener("scroll", observerFn);
+    });
   };
 }
 callback = () => {
