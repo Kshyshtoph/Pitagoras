@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 200vh;
+      }
+
+      #sticky__menu {
+        width: 100vw;
+        position: fixed;
+        background-color: tomato;
+        left: 0;
+        top: 0;
+        transition: 0.3s;
+      }
+      body.scrolling #sticky__menu {
+        height: 80px;
+        width: 100%;
+      }
+      body.not-scrolling #sticky__menu {
+        height: 50px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sticky__menu"></div>
+    <script src="onStopScroll.js"></script>
+  </body>
+</html>
