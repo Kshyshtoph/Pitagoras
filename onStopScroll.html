@@ -30,6 +30,21 @@
   </head>
   <body>
     <div id="sticky__menu"></div>
-    <script src="onStopScroll.js"></script>
+    <script>
+      const body = document.body;
+
+      const removeClass = () => {
+        body.classList.add("not-scrolling");
+        body.classList.remove("scrolling");
+      };
+
+      const addClass = () => {
+        body.classList.add("scrolling");
+        body.classList.remove("not-scrolling");
+        setTimeout(removeClass, 500);
+      };
+
+      document.addEventListener("scroll", addClass);
+    </script>
   </body>
 </html>
