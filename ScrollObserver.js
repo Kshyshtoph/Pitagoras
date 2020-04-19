@@ -3,36 +3,34 @@
 // - ScrollObserver ma zamontować event onscroll po wywołaniu metody observe, oraz odpalać callback co wywołanie eventu window.onscroll
 // - w callbacku observe ma być zwracany obiekt z wartościami z window tj {scrollY, scrollX, outerHeight, outerWidth, innerHeight, innerWidth}
 // - ScrollObserver ma odmontować event onscroll po wywołaniu mentody unobserve
-let counter = 0;
 class ScrollObserver {
   constructor() {
-    // ...
+    this.observerFn = null;
   }
-  callback = () => {
-    const {
-      scrollY,
-      scrollX,
-      outerHeight,
-      outerWidth,
-      innerHeight,
-      innerWidth,
-    } = window;
-    counter++;
-    return {
-      scrollY,
-      scrollX,
-      outerHeight,
-      outerWidth,
-      innerHeight,
-      innerWidth,
-    };
-  };
-  observe = () => {
-    // ...
-    window.addEventListener("scroll", this.callback);
+
+  observe = (callback) => {
+    this.observerFn = callback;
+    window.addEventListener("scroll", callback);
   };
   unobserve = () => {
-    // ...
-    window.removeEventListener("scroll", this.callback);
+    window.removeEventListener("scroll", this.observerFn);
   };
 }
+callback = () => {
+  const {
+    scrollY,
+    scrollX,
+    outerHeight,
+    outerWidth,
+    innerHeight,
+    innerWidth,
+  } = window;
+  return {
+    scrollY,
+    scrollX,
+    outerHeight,
+    outerWidth,
+    innerHeight,
+    innerWidth,
+  };
+};
